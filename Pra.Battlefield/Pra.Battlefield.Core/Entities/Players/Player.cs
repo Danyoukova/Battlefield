@@ -9,10 +9,19 @@ namespace Pra.Battlefield.Core.Entities.Players
     {
         public string Name { get;set; }
 
-        public int Health { get; set; } 
+       
 
         public bool IsAlive { get; set; } = true;
         Random random = new Random();
+        private int health;
+
+        public int Health
+        {
+            get { return health; }
+            set { if (value < 0) health = 0;
+                else health = value; }
+        }
+
 
         public Player()
         {

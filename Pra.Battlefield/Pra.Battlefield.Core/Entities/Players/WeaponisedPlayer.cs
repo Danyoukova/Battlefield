@@ -7,8 +7,20 @@ using System.Text;
 namespace Pra.Battlefield.Core.Entities.Players
 {
        
-    public enum WeaponisedName  { TomBrady, AaronRodgers, KylerMurray, AaronDonald, EzekielElliott, BenRoethlisberger, SaquonBarkley, DrewBrees, ToddGurley, KhalilMack, PatrickMahomes, JakeRudock }
-
+    public enum WeaponisedName  
+        { TomBrady, 
+        AaronRodgers, 
+        KylerMurray, 
+        AaronDonald, 
+        EzekielElliott, 
+        BenRoethlisberger, 
+        SaquonBarkley, 
+        DrewBrees, 
+        ToddGurley, 
+        KhalilMack, 
+        PatrickMahomes, 
+        JakeRudock }
+    
 
     public class WeaponisedPlayer : Player
     {
@@ -18,19 +30,22 @@ namespace Pra.Battlefield.Core.Entities.Players
         public Bazooka Bazooka { get; set; }
         public Pistol Pistol { get; set; }
         public Sword Sword { get; set; }
+        public IWeapon Weapon { get; set; }
 
+        public List<IWeapon> Weapons { get; set; }
 
         public WeaponisedPlayer()
         {
            WName= (WeaponisedName)random.Next(0, Enum.GetValues(typeof(WeaponisedName)).Length);
-
-            
+           
+            Name = $"{WName}({Weapon})"; 
 
         }
 
+
         public override string ToString()
         {
-            return base.ToString();
+            return $"{WName} ({Weapon})-{Health}";
         }
 
 
