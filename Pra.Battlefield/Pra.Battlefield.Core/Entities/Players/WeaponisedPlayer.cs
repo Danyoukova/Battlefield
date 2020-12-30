@@ -20,32 +20,41 @@ namespace Pra.Battlefield.Core.Entities.Players
         KhalilMack, 
         PatrickMahomes, 
         JakeRudock }
-    
+
+    public enum IWeapon { Bazooka, Pistol, Sword}
 
     public class WeaponisedPlayer : Player
     {
-        Random random = new Random();
+        private static Random random = new Random();
 
         public WeaponisedName WName { get;  }
-        public Bazooka Bazooka { get; set; }
-        public Pistol Pistol { get; set; }
-        public Sword Sword { get; set; }
         public IWeapon Weapon { get; set; }
 
-        public List<IWeapon> Weapons { get; set; }
+       public override int Health
+        {
+            get { return health; }
+            set
+            {
+                
+                if (value <= 0) health =0;
+                else health = value;
+            }
+        }
 
         public WeaponisedPlayer()
         {
            WName= (WeaponisedName)random.Next(0, Enum.GetValues(typeof(WeaponisedName)).Length);
-           
-            Name = $"{WName}({Weapon})"; 
+
+           Weapon = (IWeapon)random.Next(0, Enum.GetValues(typeof(IWeapon)).Length);
+         
+           Name = $"{WName}({Weapon})";             
 
         }
 
 
         public override string ToString()
         {
-            return $"{WName} ({Weapon})-{Health}";
+            return $"{Name} -{Health}";
         }
 
 

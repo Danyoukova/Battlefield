@@ -9,7 +9,7 @@ namespace Pra.Battlefield.Core.Entities.Players
     {
 
         private static int number = 0;
-        Random random = new Random();
+        private static Random random = new Random();
       
 
         //constructor
