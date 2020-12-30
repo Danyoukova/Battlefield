@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pra.Battlefield.Core.Interfaces
 {
-    interface IWeapon
+    public interface IWeapon
     {
         void DoDamage(IPlayer player);
     }

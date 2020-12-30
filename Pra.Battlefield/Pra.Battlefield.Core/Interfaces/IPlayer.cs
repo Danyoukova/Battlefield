@@ -7,8 +7,8 @@ namespace Pra.Battlefield.Core.Interfaces
     public interface IPlayer
     {
         string Name { get; }
-        int Health { get; }
-        bool IsAlive { get; }
+        int Health { get;  }
+        bool IsAlive { get; set; }
 
         void TakeDamage(int damage);
         void Attack(IPlayer otherPlayer);
