@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pra.Battlefield.Wpf"
         mc:Ignorable="d"
-        Title="Battlefield" Height="450" Width="563">
+        Title="Battlefield" Height="450" Width="563" Loaded="Window_Loaded">
     <Grid>
         <Button x:Name="btnNewGame" Content="New game" HorizontalAlignment="Left" Margin="22,22,0,0" VerticalAlignment="Top" Height="31" Width="84" Click="BtnNewGame_Click"/>
         <CheckBox x:Name="chkSimpleGame" Content="Simple mode" HorizontalAlignment="Left" Margin="19,69,0,0" VerticalAlignment="Top"/>
