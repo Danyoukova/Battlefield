@@ -1,51 +1,61 @@
 ﻿using Pra.Battlefield.Core.Entities.Players;
+using Pra.Battlefield.Core.Entities.Weapons;
 using Pra.Battlefield.Core.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
+
+
 namespace Pra.Battlefield.Core.Services
+
 {
-    public class SimpleBattlefield : IBattlefield
+
+    public class AdvancedBattlefield:IBattlefield
     {
         public List<IPlayer> Players { get; }
-        Random random = new Random();
-
+        
+       private static Random random = new Random();
+       public  Bazooka Bazooka { get; set; }
+        public Pistol Pistol { get; set; }
+        public Sword Sword { get; set; }
 
         public void AddGeneratedPlayer()
         {
-            Players.Add(new SimplePlayer());
+            Players.Add(new WeaponisedPlayer());
         }
 
-        public virtual void Attack()
+        public void Attack()
         {
-           //List<IPlayer> playersAlive = new List<IPlayer>();
-           //foreach(IPlayer player in Players)
-           // { if (player.Health>0)
-           //     {
-           //         playersAlive.Add(player);
-           //     }
-            
-           // }
-          
+            List<IPlayer> playersAlive = new List<IPlayer>();
             foreach (IPlayer player in Players)
             {
-             
-                
-                    if (player is SimplePlayer)
-                    {
-                        int damage = random.Next(0, 11);
-                        player.TakeDamage(damage);
-                    }
-                    if (player.Health <= 0)
-                    {
+                if (player.Health > 0)
+                {
+                    playersAlive.Add(player);
+                }
 
-                        player.IsAlive = false;
+            }
+
+            foreach (IPlayer player in playersAlive)
+            {
+
+
+                if (player is WeaponisedPlayer )
+                {
                     
-                    }
-                
-                  
+                    int damage = random.Next(50, 101);
+                    player.TakeDamage(damage);
+                }
+              
+                if (player.Health <= 0)
+                {
+
+                    player.IsAlive = false;                    
+                }
+
+
+
             }
 
         }
@@ -54,34 +64,34 @@ namespace Pra.Battlefield.Core.Services
             int numberAlive = 0;
             int numberDefeated = 0;
             int totalplayers = 0;
-            foreach(IPlayer player in Players)
+            foreach (IPlayer player in Players)
             {
-                if(player.Health>0)
+                if (player.Health > 0)
                 {
                     numberAlive++;
-                    
+
                 }
-                if (player.Health==0)
+                if (player.Health == 0)
                 {
                     numberDefeated++;
                 }
             }
             totalplayers = numberAlive + numberDefeated;
-            return totalplayers-numberDefeated;
-           
+            return totalplayers - numberDefeated;
+
         }
 
         public List<IPlayer> GetAlivePlayers()
         {
             //List<IPlayer> players = new List<IPlayer>();
-           
+
             foreach (IPlayer player in Players)
             {
-                if (player.Health > 0 )
+                if (player.Health > 0)
                 {
                     player.IsAlive = true;
                     Players.Add(player);
-                   
+
                 }
                 else
                 {
@@ -89,15 +99,16 @@ namespace Pra.Battlefield.Core.Services
                 }
 
             }
-           
+
             return Players;
         }
 
-        
+       
 
-        public SimpleBattlefield()
+        public AdvancedBattlefield()
         {
             Players = new List<IPlayer>();
         }
     }
 }
+
